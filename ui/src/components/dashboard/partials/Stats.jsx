@@ -4,10 +4,10 @@ function StatBar(props) {
             { props.title && <span className="whitespace-nowrap w-36 overflow-hidden"> {props.title} </span> }
             <div className="w-full bg-gray-200 rounded-full border">
                 <div
-                    className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full"
-                    style={{ width: props.stat + "%" }}
+                    className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                    style={{ width: (props.progress == 0 ? 15 : props.progress) + "%" }}
                 >
-                    {props.stat + '%'}
+                    {props.progress + '%'}
                 </div>
             </div>
         </div>
@@ -28,45 +28,19 @@ function StatCard(props) {
     )
 }
 
-function Stats() {
-    const users = [
-        {
-            name: "John Doe",
-            stat: 50
-        },
-        {
-            name: "Alex Polm",
-            stat: 20
-        }
-    ]
-
-    const projects = [
-        {
-            name: "Brief 1",
-            stat: 75,
-        },
-        {
-            name: "Brief 2",
-            stat: 46,
-        },
-        {
-            name: "Brief 3",
-            stat: 20,
-        }
-    ]
-
+function Stats(props) {
     return (
         <div className="flex flex-row justify-center space-x-10 mt-16">
             <div className="flex flex-col w-full space-y-6">
                 <StatCard label="état d'avancement du groupe">
-                    <StatBar stat={50} />
+                    <StatBar progress={props.group} />
                 </StatCard>
                 <StatCard label="état d'avancement des briefs">
-                {projects.map(user => <StatBar title={user.name} stat={user.stat} />)}
+                {props.projects.map(project => <StatBar title={project.title} progress={project.progress} />)}
                 </StatCard>
             </div>
             <StatCard label="état d'avancement des apprenants">
-                {users.map(user => <StatBar title={user.name} stat={user.stat} />)}
+                {props.students.map(student => <StatBar title={student.name} progress={student.progress} />)}
             </StatCard>
         </div>
     )
