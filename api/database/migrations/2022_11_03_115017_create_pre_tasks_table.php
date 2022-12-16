@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->foreignId('pre_project_id')->constrained('pre_projects');
-            $table->string('token')->index();
             $table->timestamps();
         });
     }

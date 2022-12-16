@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('photo')->nullable();
             $table->foreignId('group_id')->constrained('groups');
-            $table->string('token')->index();
             $table->timestamps();
         });
     }
