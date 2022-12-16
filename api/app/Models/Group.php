@@ -26,6 +26,6 @@ class Group extends Model
 
     public static function years()
     {
-        return self::all()->map(fn($group) => $group->year_of_study)->unique();
+        return self::latest()->get()->map(fn($group) => $group->year_of_study)->unique();
     }
 }

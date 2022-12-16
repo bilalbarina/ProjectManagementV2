@@ -23,7 +23,7 @@ class DashboardController extends Controller
             $group = Group::where('year_of_study', $year)->first();
         }
 
-        if (is_null($group)) {
+        if (is_null($group) || $group->projects->count() < 1) {
             return response()->json([
                 'success' => false,
             ]);
