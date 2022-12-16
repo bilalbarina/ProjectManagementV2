@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pre_project_id')->constrained('pre_projects');
             $table->foreignId('pre_task_id')->constrained('pre_tasks');
             $table->foreignId('project_id')->constrained('projects');
             $table->foreignId('student_id')->constrained('students');

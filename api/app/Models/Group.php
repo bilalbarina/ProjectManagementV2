@@ -21,11 +21,11 @@ class Group extends Model
 
     public function projects()
     {
-        return $this->hasMany(Project::class);
+        return $this->hasMany(PreProject::class);
     }
 
     public static function years()
     {
-        return self::latest()->get()->map(fn($group) => $group->year_of_study)->unique();
+        return self::latest('year_of_study')->get()->map(fn($group) => $group->year_of_study)->unique();
     }
 }

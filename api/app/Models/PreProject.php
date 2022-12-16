@@ -16,6 +16,18 @@ class PreProject extends Model
 
     public function tasks()
     {
-        return $this->hasMany(PreTask::class);
+        return $this->hasMany(Task::class);
+    }
+
+        /**
+     * Get project progress in percentage.
+     * 
+     */
+    public function progress()
+    {
+        return get_percentage(
+            $this->tasks->count(),
+            $this->tasks->sum(fn ($e) => $e->status != 2)
+        );
     }
 }

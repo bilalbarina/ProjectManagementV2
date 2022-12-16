@@ -38,7 +38,7 @@ class DashboardController extends Controller
             ?->projects
             ->map(function ($project) {
                 return [
-                    'title' => $project->pre_project->title,
+                    'title' => $project->title,
                     'progress' => (int) $project->progress(),
                 ];
             });
