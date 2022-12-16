@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->string('logo')->nullable();
-            $table->string('token')->index();
             $table->string('year_of_study')->index();
+            $table->string('token')->index();
             $table->timestamps();
         });
     }
