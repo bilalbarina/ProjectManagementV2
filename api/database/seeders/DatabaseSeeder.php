@@ -32,8 +32,8 @@ class DatabaseSeeder extends Seeder
 
         // Create new student.
         $student = new Student([
-            'first_name' => 'John',
-            'last_name' => 'Doe',
+            'first_name' => fake()->firstName,
+            'last_name' => fake()->lastName,
             'cin' => Str::random(8),
             'dob' => Carbon::parse('12/01/1999'),
             'email' => fake()->email,
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         
         // Create new pre project.
         $preProject = new PreProject([
-            'title' => 'Todo List',
+            'title' => fake()->company  ,
             'group_id' => $group->id,
             'duration' => 86400 // 1 Day
         ]);

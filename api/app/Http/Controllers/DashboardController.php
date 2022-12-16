@@ -54,16 +54,14 @@ class DashboardController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => [
-                'title' => $group->title,
-                'logo' => $group->logo,
-                'year_of_study' => $group->year_of_study,
-                'students' => $group->students->count(),
-                'stats' => [
-                    'group' => (int) $groupStats,
-                    'projects' => $projectsStats,
-                    'students' => $studentStats,
-                ]
+            'title' => $group->title,
+            'logo' => $group->logo,
+            'year_of_study' => $group->year_of_study,
+            'students' => $group->students->count(),
+            'stats' => [
+                'group' => (int) $groupStats,
+                'projects' => $projectsStats,
+                'students' => $studentStats,
             ],
         ]);
     }
