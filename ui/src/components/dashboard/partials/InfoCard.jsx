@@ -6,7 +6,7 @@ function InfoCard(props) {
             </div>
 
             <div>
-                { props.students }
+               Apprenants: { props.students }
             </div>
 
             <div>
