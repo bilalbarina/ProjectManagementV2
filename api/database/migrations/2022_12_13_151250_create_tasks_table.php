@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('note')->nullable();
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
+            $table->tinyInteger('status')->default(0)->comment('0=not_started; 1=in_progress; 2=finished; 3=on_pause');
             $table->timestamps();
         });
     }

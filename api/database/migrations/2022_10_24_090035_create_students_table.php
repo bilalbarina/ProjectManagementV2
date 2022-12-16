@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('photo')->nullable();
-            $table->foreignId('group_id')->references('id')->on('groups')->nullOnDelete();
+            $table->foreignId('group_id')->constrained('groups');
             $table->string('token')->index();
             $table->timestamps();
         });

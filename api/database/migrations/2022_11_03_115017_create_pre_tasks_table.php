@@ -17,10 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description')->nullable();
-            $table->foreignId('pre_project_id')->constrained('pre_projects')->cascadeOnDelete();
+            $table->foreignId('pre_project_id')->constrained('pre_projects');
             $table->string('token')->index();
-            $table->tinyInteger('status')->default(0)
-                ->comment('0=not_started; 1=in_progress; 2=finished; 3=en_pause');
             $table->timestamps();
         });
     }

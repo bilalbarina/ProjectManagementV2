@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description')->nullable();
+            $table->foreignId('group_id')->constrained('groups');
             $table->unsignedBigInteger('duration')->nullable()->comment('in seconds');
             $table->string('token')->index();
             $table->timestamps();
