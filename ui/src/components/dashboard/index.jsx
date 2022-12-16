@@ -6,14 +6,29 @@ import { Stats } from "./partials/Stats";
 
 export default function Dashboard() {
   const [data, setData] = useState(0);
+  const [years, setYears] = useState([]);
+
+  const getData = (year = null) => {
+    axios
+      .get(config.api_uri + "stats", {
+        params: {
+          year: year,
+        },
+      })
+      .then((response) => setData(response.data));
+  };
 
   useEffect(function () {
-    axios.get(config.api_uri + "stats").then((response) => {
-      setData(response.data);
-    });
+    // Get stats.
+    getData();
+
+    // Get years of study.
+    axios
+      .get(config.api_uri + "study-years")
+      .then((response) => setYears(response.data.years));
   }, []);
 
-  if (!data) return;
+  // if (!data || years.length == 0) return;
 
   return (
     <>
@@ -22,16 +37,30 @@ export default function Dashboard() {
           Tableau de borde d'état d'avancement
         </h3>
         <div>
-          <input name="year_of_study" placeholder="Année" />
+          <select
+            placeholder="Année"
+            className="p-2 rounded-md"
+            onChange={(e) => getData(e.target.value)}
+          >
+            {years.map((year) => (
+              <option value={year}> {year} </option>
+            ))}
+          </select>
         </div>
       </div>
 
-      <InfoCard />
-      <Stats
-        group={data.stats.group}
-        projects={data.stats.projects}
-        students={data.stats.students}
+      <InfoCard
+        title={data.title}
+        students={data.students}
+        year={data.year_of_study}
       />
+      {data.stats && (
+        <Stats
+          group={data.stats.group}
+          projects={data.stats.projects}
+          students={data.stats.students}
+        />
+      )}
     </>
   );
 }
