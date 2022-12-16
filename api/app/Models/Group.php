@@ -23,4 +23,9 @@ class Group extends Model
     {
         return $this->hasMany(Project::class);
     }
+
+    public static function years()
+    {
+        return self::all()->map(fn($group) => $group->year_of_study)->unique();
+    }
 }

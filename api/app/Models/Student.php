@@ -16,11 +16,23 @@ class Student extends Model
 
     public function projects()
     {
-        return $this->belongsToMany(Project::class);
+        return $this->belongsToMany(PreProject::class, 'projects');
     }
 
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    /**
+     * Get student progress in percentage.
+     * 
+     */
+    public function progress()
+    {
+        return get_percentage(
+            $this->tasks->count(),
+            $this->tasks->sum(fn ($e) => $e->status != 2)
+        );
     }
 }
