@@ -12,6 +12,7 @@ use App\Models\Student;
 use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
     {
         // Create new group.
         $group = new Group([
-            'title' => 'CodeCampers',
+            'title' => fake()->company,
             'year_of_study' => '2022-2023',
         ]);
         $group->save();
@@ -33,9 +34,9 @@ class DatabaseSeeder extends Seeder
         $student = new Student([
             'first_name' => 'John',
             'last_name' => 'Doe',
-            'cin' => 'LB289182',
+            'cin' => Str::random(8),
             'dob' => Carbon::parse('12/01/1999'),
-            'email' => 'john.doe@gmail.com',
+            'email' => fake()->email,
             'group_id' => $group->id,
         ]);
         $student->save();
